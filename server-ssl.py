@@ -38,42 +38,35 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 
     def on_message(self, message):
-	lamp = [0, 0, 0]
+        lamp = [0, 0, 0]
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
         GPIO.setup(3, GPIO.OUT)
         GPIO.setup(5, GPIO.OUT)
         GPIO.setup(7, GPIO.OUT)
 
-        if (message == 'lamp1'):
+        if (message == 'queen'):
             if (GPIO.input(3) == True):
                 GPIO.output(3, False)
+                lamp[0] = 1
             else:
                 GPIO.output(3, True)
-        if (message == 'lamp2'):
+                lamp[0] = 0
+        if (message == 'lampets'):
             if (GPIO.input(5) == True):
                 GPIO.output(5, False)
+                lamp[1] = 1
             else:
                 GPIO.output(5, True)
-        if (message == 'lamp3'):
+                lamp[1] = 0
+        if (message == 'saturno'):
             if (GPIO.input(7) == True):
                 GPIO.output(7, False)
+                lamp[2] = 1
             else:
                 GPIO.output(7, True)
+                lamp[2] = 0
 
-
-        if (GPIO.input(3) == True):
-            lamp[0] = 1
-        else:
-            lamp[0] = 0
-        if (GPIO.input(5) == True):
-            lamp[1] = 1
-        else:
-            lamp[1] = 0
-        if (GPIO.input(7) == True):
-            lamp[2] = 1
-        else:
-            lamp[2] = 0
         mssg = str(lamp[0]) + str(lamp[1]) + str(lamp[2])
         print mssg
         self.write_message(mssg)

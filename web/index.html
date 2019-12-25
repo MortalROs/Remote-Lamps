@@ -9,7 +9,7 @@
        $(document).ready(function () {
 
         var ws;
-		var mehola = [];
+	var me = [];
  
         $("#open").click(function(evt) {
           evt.preventDefault();
@@ -18,31 +18,31 @@
 		  <!-- ws = new WebSocket("wss://localhost:5000/ws"); ->
            
           ws.onmessage = function(evt) {
-			var messhola = evt.data;
-			var mehola = messhola.split('');
-			var lamp1 = mehola[0];
-			var lamp2 = mehola[1];
-			var lamp3 = mehola[2];
+			var mess = evt.data;
+			me = mess.split('');
+			var lamp1 = me[0];
+			var lamp2 = me[1];
+			var lamp3 = me[2];
 			if(lamp1 == '1') {
-				$("#hola_queen").attr("src","0.png");
+				$("#Lamp1").attr("src","0.png");
 			} else {
-				$("#hola_queen").attr("src","1.png");
+				$("#Lamp1").attr("src","1.png");
 			}
 			if(lamp2 == '1') {
-				$("#hola_lampets").attr("src","0.png");
+				$("#Lamp2").attr("src","0.png");
 			} else {
-				$("#hola_lampets").attr("src","1.png");
+				$("#Lamp2").attr("src","1.png");
 			}
 			if(lamp3 == '1') {
-				$("#hola_saturno").attr("src","0.png");
+				$("#Lamp3").attr("src","0.png");
 			} else {
-				$("#hola_saturno").attr("src","1.png");
+				$("#Lamp3").attr("src","1.png");
 			}
             };
  
           ws.onclose = function(evt) {
             //alert("No connexion to Lamps");
-			$(".holacon").attr("value","You are not connected!");
+			$(".con").attr("value","You are not connected!");
 			};
           ws.onopen = function(evt) {
 			//alert("You are connected to Lamps!");
@@ -50,7 +50,7 @@
 			};
         });
  
-        $("#Lamp1").click(function(evt) {
+                $("#Lamp1").click(function(evt) {
             ws.send("lamp1");
         });
 		$("#Lamp2").click(function(evt) {
@@ -65,7 +65,7 @@
   </head>
  
   <body>
-    <center><div id="connect_hola">
+    <center><div id="connect">
 		<img id="video" width="320" height="240" src="webcam.png">
 		<!--  <img id="video" width="320" height="240" src="http://localhost:5001/"> -->
 		</br></br>

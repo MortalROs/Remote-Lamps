@@ -45,21 +45,21 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         GPIO.setup(5, GPIO.OUT)
         GPIO.setup(7, GPIO.OUT)
 
-        if (message == 'queen'):
+        if (message == 'lamp1'):
             if (GPIO.input(3) == True):
                 GPIO.output(3, False)
                 lamp[0] = 1
             else:
                 GPIO.output(3, True)
                 lamp[0] = 0
-        if (message == 'lampets'):
+        if (message == 'lamp2'):
             if (GPIO.input(5) == True):
                 GPIO.output(5, False)
                 lamp[1] = 1
             else:
                 GPIO.output(5, True)
                 lamp[1] = 0
-        if (message == 'saturno'):
+        if (message == 'lamp3'):
             if (GPIO.input(7) == True):
                 GPIO.output(7, False)
                 lamp[2] = 1
